@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Movie = require('.../models/Movie');
+const movie = require('../api/models/movie');
 
 const movies = [
   {
@@ -39,21 +39,21 @@ const movies = [
     type: 'Comedia romántica',
   },
 ];
-const db = movies.map(movie => new Movie(movie));
+const movieDocu = movies.map(movie => new movie(movie));
 mongoose
   .connect('mongodb://localhost:3000/servidor-movies1', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(async () => {
-    const allMovies = await Movie.find();
+    const allMovies = await movie.find();
     if (allMovies.length) {
       await Movie.collection.drop(); 
     }
   })
   .catch((err) => console.log(`Error deleting data: ${err}`))
   .then(async () => {
-		await Movie.insertMany(db);
+		await movie.insertMany(movieDocu);
     console.log('DatabaseCreated')
 	})
   .catch((err) => console.log(`Error creating data: ${err}`))

@@ -8,11 +8,9 @@ const movieSchema = new Schema(
     year: { type: Number,required: false },
     type: { type: String, required: true },
   },
-
   {
-collection: 'movies',
+    timestamps: true,
   }
-
 );
 
 const movies = mongoose.model('movies', movieSchema);

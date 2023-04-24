@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //usuario de conexion con la bd
 const user ='suzowy';
 const password = 'secretoboot';
-//nombre de la base de datos que haya definido
+//nombre de la base de datos
 const db = 'servidor-movies1';
 //enlace de conexion que nos proporciona mongodb
 const uri =`mongodb+srv://${user}:${password}@cluster0.yb1memq.mongodb.net/${db}?retryWrites=true&w=majority`;
