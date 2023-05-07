@@ -1,11 +1,18 @@
-GET http://localhost:3000/movies
+GET http://localhost:3000/cinema
 Content-Type:application/json
-### (para separar lineas)
 
-POST http://localhost:3000/movies
-Content-Type:application/json
-//dejar un espacio aqui
-{
-    "lo que sea": "lo que sea"
-}
 ###
+
+POST http://localhost:3000/cinema
+Content-Type:application/json
+
+ {
+    "name": "Yelmo cines",
+    "location": "Valencia",
+    "movies": ["644831bbee186edf0202b953","64483240ee186edf0202b958"]
+  }
+
+  ###
+
+  FIND http://localhost:3000/cinema
+  Content-Type:application/json
