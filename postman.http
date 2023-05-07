@@ -1,0 +1,11 @@
+GET http://localhost:3000/movies
+Content-Type:application/json
+### (para separar lineas)
+
+POST http://localhost:3000/movies
+Content-Type:application/json
+//dejar un espacio aqui
+{
+    "lo que sea": "lo que sea"
+}
+###

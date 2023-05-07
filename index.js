@@ -1,16 +1,19 @@
 const express = require('express');
 const {connect} = require('./utils/db');
-const router = express.Router();
-
-// ejecuto express para crear un nuevo servidor
 const server = express();
-connect(); // conexion con la Bd
+const dotenv = require ('dotenv');
+const movieRouter = require ('./api/routes/movies.routes')
+const cinemasRouter = require('./api/routes/cinema.routes')
+dotenv.config();
+const PORT = process.env.PORT || 3000;
+connect();
 server.use(express.json());
-const PORT = 3000;
 
+const Movie = require('./api/models/Movie');
+
+server.use('/movies', movieRouter);
+server.use('/cinema', cinemasRouter);
 
 server.listen(PORT, () => {
-    console.log(`Url del servidor : http://localhost:${PORT}`);
+  console.log(`Server running in http://localhost:${PORT}`);
 });
-
-

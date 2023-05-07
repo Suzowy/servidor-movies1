@@ -1,5 +1,8 @@
+
 const mongoose = require('mongoose');
-const movie = require('../api/models/movie');
+const Movie = require('../api/models/Movie');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const movies = [
   {
@@ -39,22 +42,28 @@ const movies = [
     type: 'Comedia romántica',
   },
 ];
-const movieDocu = movies.map(movie => new movie(movie));
-mongoose
-  .connect('mongodb://localhost:3000/servidor-movies1', {
+const movieDocu = movies.map(movie => new Movie(movie));
+//momgoose.connect(proces.env.uri)
+  mongoose.connect('mongodb://localhost:3000/servidor-movies1', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
+  // obtendremos un array con todas las pelis de la db
   .then(async () => {
-    const allMovies = await movie.find();
+    const allMovies = await Movie.find();
+    // Si existen previamente, dropearemos la colección
     if (allMovies.length) {
       await Movie.collection.drop(); 
     }
   })
+  // Una vez vaciada la db , usaremos el array Docu
+	// para llenar nuestra base de datos con todas las.
   .catch((err) => console.log(`Error deleting data: ${err}`))
   .then(async () => {
-		await movie.insertMany(movieDocu);
+		await Movie.insertMany(movieDocu);
     console.log('DatabaseCreated')
 	})
   .catch((err) => console.log(`Error creating data: ${err}`))
   .finally(() => mongoose.disconnect());
+  
+  

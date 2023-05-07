@@ -3,15 +3,17 @@ const Schema = mongoose.Schema;
 //esquema coleccion
 const movieSchema = new Schema(
   {
+    //nombre{type:Schema,types.ObjectId,required: true}//
     title: { type: String, required: true },
     director: { type: String, required: true },
     year: { type: Number,required: false },
     type: { type: String, required: true },
   },
+  // Esta propiedad servirá para guardar las fechas de creación y actualización de los documentos
   {
     timestamps: true,
   }
 );
 
-const movies = mongoose.model('movies', movieSchema);
-module.exports = movies;
+const Movie = mongoose.model('Movie', movieSchema);
+module.exports = Movie;
