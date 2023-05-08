@@ -8,6 +8,7 @@ const movieSchema = new Schema(
     director: { type: String, required: true },
     year: { type: Number,required: false },
     type: { type: String, required: true },
+    image: { type: String, required: false, default: '' }
   },
   // Esta propiedad servirá para guardar las fechas de creación y actualización de los documentos
   {

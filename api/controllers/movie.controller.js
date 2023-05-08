@@ -92,6 +92,27 @@ const filterByYear = async (req, res) => {
     return res.status(500).json(error);
   }
 };
+const getAllCharacters = async(req, res)=>{
+  try {
+    const getAllCharacters = await Character.find()
+    return res.status(200).json(getAllCharacters);
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+}
+const postCharacter = async(req, res)=>{
+try {
+console.log(req.file.path);
+ const newCharacter= new CharacterData(req.body);
+ if(req.file.path){
+  newCharacter.image =req.file.path;
+ }
+ const createdCharacter = await newCharacter.save();
+ return res.status(200).json(createdCharacter);
+} catch (error) {
+  
+}
+};
 
 module.exports = {
   getAllMovies,
@@ -100,5 +121,7 @@ module.exports = {
   deleteMovie,
   filterByTitle,
   filterByDirector,
-  filterByYear
+  filterByYear,
+  postCharacter,
+  getAllCharacters
 };
